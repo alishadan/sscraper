@@ -1,4 +1,4 @@
-module my_library
+module sscraper
 
 go 1.26.4
 

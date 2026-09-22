@@ -1,4 +1,4 @@
-package myhtml
+package sscraper
 
 import (
 	"my_library/myhttp"

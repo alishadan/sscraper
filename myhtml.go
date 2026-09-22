@@ -1,4 +1,4 @@
-package myhtml
+package sscraper
 
 import (
 	"golang.org/x/net/html"
