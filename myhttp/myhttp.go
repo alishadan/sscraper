@@ -3,6 +3,7 @@ package myhttp
 import (
 	"io"
 	"net/http"
+	"os"
 )
 
 //how to use: example
@@ -44,12 +45,12 @@ func Myhttp(url string) (io.ReadCloser, error) {
 // defer body.Close()
 //proccess body
 
-func Myfile(string filename) (io.ReadCloser, error) {
+func Myfile(filename string) (io.ReadCloser, error) {
 	//fileName := "crypt.htm"
 
-	file, err := os.Open(fileName)
+	file, err := os.Open(filename)
 	if err != nil {
-		print("error in opening ", fileName, "\n")
+		print("error in opening ", filename, "\n")
 		return nil, err
 	}
 	return file, err

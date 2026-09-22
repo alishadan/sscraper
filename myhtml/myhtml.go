@@ -10,7 +10,7 @@ import (
 // we edit loop for or every IF: like in a page that calsses diffrent
 // with this in here we change "sc-c1554bc0-0 eWrlhi coin-item-name"
 
-func Myhtml(body io.ReadCloser, names *[]string) {
+func Myhtml(body io.ReadCloser, names *string) {
 	tokenizer := html.NewTokenizer(body)
 	if tokenizer.Err() != nil {
 		print("error in html.NewTokenizer \n")
@@ -27,7 +27,7 @@ func Myhtml(body io.ReadCloser, names *[]string) {
 					if value.Val == "sc-c1554bc0-0 eWrlhi coin-item-name" {
 						tokenizer.Next()
 						token1 = tokenizer.Token()
-						*names = append(*names, token1.Data)
+						*names = token1.Data
 					}
 				}
 
