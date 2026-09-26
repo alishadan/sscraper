@@ -1,12 +1,12 @@
-package goquery
+package sscraper
 
 import (
 	"testing"
-	"github.com/alishadan/sscraper"
+	//"github.com/alishadan/sscraper"
 )
 func Test_MyQuery(t *testing.T){
 	url:="https://google.com"
-	body,err:=sscraper.Myhttp(url)
+	body,err:=Myhttp(url)
 	if err!=nil{
 		panic("happend error in connect to site \n")
 	}

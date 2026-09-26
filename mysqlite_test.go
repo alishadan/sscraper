@@ -1,13 +1,9 @@
-package mysqlite
+package sscraper
 
 import (
 	"testing"
 )
-type Book struct{
-	Title		string
-	UrlImage	string
-	Price 		float32
-}
+
 
 
 func Test_sq(t *testing.T) {
@@ -16,6 +12,6 @@ func Test_sq(t *testing.T) {
 	books[0].Price=150000
 	books[0].UrlImage="https://example.com"
 
-	sq(books)
+	Sq(books)
 
 }

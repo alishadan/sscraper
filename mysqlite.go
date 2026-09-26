@@ -1,14 +1,15 @@
-package mysqlite
+package sscraper
 
 import (
 	"database/sql"
 	"fmt"
 	_ "github.com/glebarez/go-sqlite"
-	"CLIScraper/codes/kind"
+	//"CLIScraper/codes/kind"
 
 )
 
-func Sq(Books []kind.Book) {
+
+func Sq(Books []Book) {
 	filename := "./Book.db"
 	db := connect_sqlite3(filename)
 	if db == nil {
@@ -85,7 +86,7 @@ func get_version(db *sql.DB) {
 	//get_version(db)
 
 }
-func insert_record(db *sql.DB, Books []kind.Book) (int64, error) {
+func insert_record(db *sql.DB, Books []Book) (int64, error) {
 	query := `INSERT OR IGNORE INTO Books (title,price,image_url)
 	VALUES (?,?,?)`
 
