@@ -1,4 +1,4 @@
-module sscraper
+module github.com/alishadan/sscraper
 
 go 1.26.4
 
