@@ -1,3 +1,4 @@
+package sscraper
 //functions in this package
 
 //func FaToint(string1 string)int

@@ -1,4 +1,4 @@
-package FaToInt
+package sscraper
 import (
 	"testing"
 	"fmt"
