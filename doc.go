@@ -22,9 +22,10 @@ package sscraper
 //func get_version(db *sql.DB)
 //func insert_record(db *sql.DB, Books []Book) (int64, error)
 
-//save data in json file
+//work with json file
 //func SaveOnFile(uRl string, price string, filename string) error
 //func Encoding_data(uRl string, price string) []byte
+//func Decoder(filename string) error
 
 //send mail
 //func SendMail(extracted_price string, url string, product string) error

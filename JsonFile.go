@@ -3,7 +3,16 @@ package sscraper
 import(
 	"os"
 	"encoding/json"
+	"fmt"
 )
+//get url, price and filename and save url and price on a json file
+//for your uses , you need to edit this funcitons
+
+type Data struct {
+	Site  string `json:"site"`
+	Price string `json:"price"`
+}
+
 func SaveOnFile(uRl string, price string, filename string) error {
 	encodedData :=Encoding_data(uRl, price)
 	//create or open the file for writing
@@ -25,11 +34,8 @@ func SaveOnFile(uRl string, price string, filename string) error {
 	return nil
 }
 func Encoding_data(uRl string, price string) []byte {
-	type data struct {
-		Site  string `json:"site"`
-		Price string `json:"price"`
-	}
-	data1 := data{uRl, price}
+
+	data1 := Data{uRl, price}
 	encodedData, err := json.Marshal(data1)
 
 	if err != nil {
@@ -37,4 +43,20 @@ func Encoding_data(uRl string, price string) []byte {
 		return nil
 	}
 	return encodedData
+}
+
+func Decoder(filename string,data2 any) error {
+
+	//open file
+	data, err := os.ReadFile(filename)
+	if err != nil {
+		fmt.Println("error exist in os.ReadFile function")
+		return err
+	}
+
+	if err := json.Unmarshal(data, &data2); err != nil {
+        panic(err)
+        return err
+    }
+    return nil
 }

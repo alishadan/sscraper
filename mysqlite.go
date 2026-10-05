@@ -8,8 +8,16 @@ import (
 
 )
 
+//for your uses, we neet to edit this functions
 
-func Sq(Books []Book) {
+type book struct{
+	Title		string
+	UrlImage	string
+	Price 		float64
+}
+
+
+func Sq(Books []book) {
 	filename := "./Book.db"
 	db := connect_sqlite3(filename)
 	if db == nil {
@@ -86,7 +94,7 @@ func get_version(db *sql.DB) {
 	//get_version(db)
 
 }
-func insert_record(db *sql.DB, Books []Book) (int64, error) {
+func insert_record(db *sql.DB, Books []book) (int64, error) {
 	query := `INSERT OR IGNORE INTO Books (title,price,image_url)
 	VALUES (?,?,?)`
 

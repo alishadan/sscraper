@@ -5,6 +5,9 @@ import (
 	"io"
 )
 
+//example of net/html package for scraping
+//you need edit this function for your uses
+
 //how to use
 // for use of this funciton:
 // we edit loop for or every IF: like in a page that calsses diffrent

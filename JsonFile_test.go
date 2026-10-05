@@ -2,6 +2,7 @@ package sscraper
 import (
 	"encoding/json"
 	"testing"
+	"fmt"
 )
 
 func Test_Encoding_data(t *testing.T) {
@@ -46,4 +47,16 @@ func Test_Save(t *testing.T) {
 	} else {
 		println("error exist in Save_on_file function")
 	}
+}
+
+func Test_decoder(t *testing.T){
+	var data2 Data
+
+	err:=Decoder("new.txt",data2 )
+	if err!=nil{
+		fmt.Println("we have error in Decoder function")
+	}else{
+		fmt.Println("Decoder Passed")
+	}
+
 }

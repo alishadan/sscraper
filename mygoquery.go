@@ -7,6 +7,8 @@ import(
 	//"CLIScraper/codes/kind"
 	"strconv"
 )
+//example of goquery for scrapping
+// you need edit this function for your uses
 
 
 var books []Book
