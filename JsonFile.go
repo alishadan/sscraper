@@ -5,16 +5,10 @@ import(
 	"encoding/json"
 	"fmt"
 )
-//get url, price and filename and save url and price on a json file
-//for your uses , you need to edit this funcitons
+//get data variable and filename and save datan on a json file
 
-type Data struct {
-	Site  string `json:"site"`
-	Price string `json:"price"`
-}
-
-func SaveOnFile(uRl string, price string, filename string) error {
-	encodedData :=Encoding_data(uRl, price)
+func SaveOnFile(data any, filename string) error {
+	encodedData :=Encoding_data(data)
 	//create or open the file for writing
 	file, err := os.Create(filename)
 	if err != nil {
@@ -33,10 +27,9 @@ func SaveOnFile(uRl string, price string, filename string) error {
 	print("data save on", filename, " successfully \n")
 	return nil
 }
-func Encoding_data(uRl string, price string) []byte {
+func Encoding_data(data any) []byte {
 
-	data1 := Data{uRl, price}
-	encodedData, err := json.Marshal(data1)
+	encodedData, err := json.Marshal(data)
 
 	if err != nil {
 		print("some errors happen in encoding_data function \n")
@@ -45,16 +38,16 @@ func Encoding_data(uRl string, price string) []byte {
 	return encodedData
 }
 
-func Decoder(filename string,data2 any) error {
+func Decoder(filename string,data any) error {
 
 	//open file
-	data, err := os.ReadFile(filename)
+	data1, err := os.ReadFile(filename)
 	if err != nil {
 		fmt.Println("error exist in os.ReadFile function")
 		return err
 	}
 
-	if err := json.Unmarshal(data, &data2); err != nil {
+	if err := json.Unmarshal(data1, &data); err != nil {
         panic(err)
         return err
     }

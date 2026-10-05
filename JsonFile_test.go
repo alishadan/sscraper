@@ -3,20 +3,23 @@ import (
 	"encoding/json"
 	"testing"
 	"fmt"
+	
 )
+//define type struct
+type Data struct {
+	Site  string `json:"site"`
+	Price string `json:"price"`
+}
 
 func Test_Encoding_data(t *testing.T) {
-	//input: string,string //output: []byte
-	url := "http://example.com"
-	price := "100,00"
-	byte_v := Encoding_data(url, price)
+	var data1 Data
+	data1.Site="http://example.com"
+	data1.Price="100,00"
 
-	//define type struct
-	type data struct {
-		Site  string `json:"site"`
-		Price string `json:"price"`
-	}
-	var result data
+	byte_v := Encoding_data(data1)
+
+
+	var result Data
 
 	//decoding byte_v and save them in result
 	err := json.Unmarshal(byte_v, &result)
@@ -25,7 +28,7 @@ func Test_Encoding_data(t *testing.T) {
 
 	}
 
-	if result.Price == price && result.Site == url {
+	if result.Price == data1.Price && result.Site == data1.Site {
 		print("Encoding_data passed \n")
 
 	} else {
@@ -39,10 +42,11 @@ func Test_Save(t *testing.T) {
 	//input []byte
 	//output error
 
-	price := "100,000"
-	url := "example.com"
+	var data1 Data
+	data1.Site="http://example.com"
+	data1.Price="100,00"
 	filename := "new.txt"
-	if err := SaveOnFile(url, price, filename); err == nil {
+	if err := SaveOnFile(data1, filename); err == nil {
 		println("Save_on_file passed")
 	} else {
 		println("error exist in Save_on_file function")

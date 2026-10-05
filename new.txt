@@ -1,1 +1,1 @@
-{"site":"example.com","price":"100,000"}
+{"site":"http://example.com","price":"100,00"}
