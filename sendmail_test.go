@@ -5,12 +5,13 @@ import (
 )
 
 func Test_Sendmail(t *testing.T) {
-	//input: (extracted_price string, url string, product string)
-	//output : error
-	extracted_price := "100,000"
-	url := "https://example.com"
-	product := "paper A4"
-	err := SendMail(extracted_price, url, product)
+	sender:="hello@demomailtrap.co"
+	reciver:="alishadan84@gmail.com"
+	subject:="list of prices"
+	text_body:="body of email"
+	token:="############"
+
+	err := SendMail(text_body,subject,sender,reciver,token)
 	if err == nil {
 		println("SendMail passed")
 	} else {

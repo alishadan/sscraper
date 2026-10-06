@@ -5,19 +5,14 @@ import (
 	"gopkg.in/gomail.v2"
 )
 
-func SendMail(extracted_price string, url string, product string) error {
-	string_all := "Hi Ali,\nprice of " + product + " in " + url +
-		" has more than 5% change\n" +
-		"now price of A4 paper double A in this site is: " + extracted_price +
-		"\n"
-
+func SendMail(text_mail string,subject string,sender string, reciver string, token string) error {
 	message := gomail.NewMessage()
 
 	// Using Mailtrap's demo domain (no verification needed!)
-	message.SetHeader("From", "hello@demomailtrap.co")
-	message.SetHeader("To", "alishadan84@gmail.com") // Your real email
-	message.SetHeader("Subject", "Price Change Alert")
-	message.SetBody("text/plain", string_all)
+	message.SetHeader("From", sender)
+	message.SetHeader("To", reciver) // Your real email
+	message.SetHeader("Subject", subject)
+	message.SetBody("text/plain", text_mail)
 
 	// Your actual Mailtrap credentials
 	dialer := gomail.NewDialer(

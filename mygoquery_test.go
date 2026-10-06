@@ -15,7 +15,7 @@ func Test_MyQuery(t *testing.T){
 	Books:=MyQuery(body,url)
 
 	if Books!=nil{
-		println(Books[0].Title)
+		println(Books)
 
 	}
 

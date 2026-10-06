@@ -9,12 +9,10 @@ import(
 )
 //example of goquery for scrapping
 // you need edit this function for your uses
+var data []any
 
 
-var books []Book
-
-func MyQuery(body io.ReadCloser, url string) []Book{
-	//url:="https://www.noon.com/uae-en/books/health-and-personal-development/mind-body-and-spirit/mind-body-spirit-self-help/?f%5BisCarousel%5D=true"
+func MyQuery(body io.ReadCloser, url string) []any{
 	body,err:=Myhttp(url)
 	if err!=nil{
 		panic("happend error in connect to site \n")
@@ -32,10 +30,7 @@ func MyQuery(body io.ReadCloser, url string) []Book{
 	}
 
 	myselection.Each(myfunc)
-
-	showBooks(books)
-
-	return books
+	return data
 }
 
 func myfunc (i int, s *goquery.Selection){
@@ -43,16 +38,12 @@ func myfunc (i int, s *goquery.Selection){
 	price:=s.Find("strong").Text()
 	title:=s.Find("h2._title_i1yaq_19").Text()
 	price1,_:=strconv.ParseFloat(price,64)
-	var book1 Book
+
+	var book1 book 
 	book1.Title=title
 	book1.UrlImage=imgurl
 	book1.Price=price1
 
-	books=append(books,book1)
+	data=append(data,book1)
 
-}
-func showBooks(books []Book){
-	for i,_:=range(books){
-		fmt.Printf("%s \n %f  \n ____________ \n",books[i].Title,books[i].Price)
-	}
 }
