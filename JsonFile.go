@@ -27,7 +27,8 @@ func SaveOnFile(data any, filename string) error {
 func Encoding_data(data any) []byte {
 	encodedData, err := json.Marshal(data)
 	if err != nil {
-		return fmt.Errorf("some errors happen in encoding_data function: %w",err)
+		fmt.Errorf("some errors happen in encoding_data function")
+		return nil
 	}
 	return encodedData
 }
