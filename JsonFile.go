@@ -12,44 +12,36 @@ func SaveOnFile(data any, filename string) error {
 	//create or open the file for writing
 	file, err := os.Create(filename)
 	if err != nil {
-		print("error in opening file \n")
-		return err
+		return fmt.Errorf("error in opening file: %w",err)
 	}
 	defer file.Close()
 
 	//write data to the file
 	_, err = file.Write(encodedData)
 	if err != nil {
-		print("error in file.WriteString() function \n")
-		return err
+		return fmt.Errorf("error in file.WriteString() function :%w",err)
 	}
-
-	print("data save on", filename, " successfully \n")
+	fmt.Println("data save on", filename, " successfully")
 	return nil
 }
 func Encoding_data(data any) []byte {
-
 	encodedData, err := json.Marshal(data)
-
 	if err != nil {
-		print("some errors happen in encoding_data function \n")
-		return nil
+		return fmt.Errorf("some errors happen in encoding_data function: %w",err)
 	}
 	return encodedData
 }
 
-func Decoder(filename string,data any) error {
-
+func Decoder[T any](filename string) ( []T,  error) {
 	//open file
-	data1, err := os.ReadFile(filename)
+	data, err := os.ReadFile(filename)
 	if err != nil {
-		fmt.Println("error exist in os.ReadFile function")
-		return err
+		return nil,fmt.Errorf("error exist in os.ReadFile function: %w",err)
 	}
+	var products []T
 
-	if err := json.Unmarshal(data1, &data); err != nil {
-        panic(err)
-        return err
+	if err := json.Unmarshal(data, &products); err != nil {
+		return nil,fmt.Errorf("error exist in json.Unmarshal function: %w",err)
     }
-    return nil
+    return products,nil
 }
