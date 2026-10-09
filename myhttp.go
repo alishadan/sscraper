@@ -4,6 +4,7 @@ import (
 	"io"
 	"net/http"
 	"os"
+	"fmt"
 )
 
 //how to use: example
@@ -14,10 +15,9 @@ import (
 
 func Myhttp(url string) (io.ReadCloser, error) {
 	//url := "https://coinmarketcap.com/"
-	req, err1 := http.NewRequest("GET", url, nil)
-	if err1 != nil {
-		print("error in NewRequest \n")
-		return nil, err1
+	req, err := http.NewRequest("GET", url, nil)
+	if err != nil {
+		return nil,fmt.Errorf("error in NewRequest %q: %w",url,err)
 	}
 
 	req.Header.Set("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
@@ -28,12 +28,11 @@ func Myhttp(url string) (io.ReadCloser, error) {
 	client := &http.Client{}
 	resp, err := client.Do(req)
 	if err != nil {
-		print("download", url, " failed")
-		return nil, err
+		return nil, fmt.Errorf("download %q failed", url)
 	}
 	if resp.StatusCode > 299 {
-		print("error in get", url, "Status", resp.Status)
-		return nil, err
+		resp.Body.Close()
+		return nil,fmt.Errorf("error in get %q : %s",url,resp.Status)
 	}
 	return resp.Body, nil
 
