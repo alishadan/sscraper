@@ -54,11 +54,11 @@ func Test_Save(t *testing.T) {
 }
 
 func Test_decoder(t *testing.T){
-	var data2 Data
+	//var data2 Data
 
-	err:=Decoder("new.txt",data2 )
+	_,err:=Decoder[Data]("new.txt")
 	if err!=nil{
-		fmt.Println("we have error in Decoder function")
+		fmt.Printf("we have error in Decoder function: %v \n",err)
 	}else{
 		fmt.Println("Decoder Passed")
 	}
